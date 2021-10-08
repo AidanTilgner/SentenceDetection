@@ -25,7 +25,7 @@ const DetectName = (input) => {
   for (let i = 0; i < words.length; i++) {
     words[i] = words[i]
       .split("")
-      .filter((letter) => letter !== ",")
+      .filter((letter) => letter !== "," && letter !== ".")
       .join("");
   }
 
@@ -92,4 +92,13 @@ const rl = readline.createInterface({
 console.log(
   "Make sure to user proper grammar. \nFor more info read more at https://github.com/AidanTilgner/SentenceDetection"
 );
-rl.question("Type in a sentence that describes someone's name:\n");
+
+rl.question("Type in a sentence that describes someone's name:\n", (input) => {
+  let context = DetectName(input);
+  console.log(context ? context : "No name provided");
+  rl.close();
+});
+
+rl.on("close", () => {
+  process.exit(0);
+});
