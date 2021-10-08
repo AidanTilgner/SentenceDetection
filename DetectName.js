@@ -49,7 +49,7 @@ const DetectName = (input) => {
 
     if (word === "my") context.subjects.push({ name: "user's", index: index });
     if (word === "their")
-      context.subjects.push({ name: "group of friend's", index: index });
+      context.subjects.push({ name: "group of friends", index: index });
     if (word === "his") context.subjects.push({ name: "friend", index: index });
     if (word === "him") context.subjects.push({ name: "friend", index: index });
     if (word === "her") context.subjects.push({ name: "friend", index: index });
