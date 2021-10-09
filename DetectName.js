@@ -14,6 +14,8 @@
 
 let exampleSentence = "I am going to name him Aidan";
 
+//  TODO: Add multiple sentence functionality
+
 const DetectName = (input) => {
   let context = {
     subjects: [], // { name: "", index: "" }
@@ -53,6 +55,8 @@ const DetectName = (input) => {
     if (word === "his") context.subjects.push({ name: "friend", index: index });
     if (word === "him") context.subjects.push({ name: "friend", index: index });
     if (word === "her") context.subjects.push({ name: "friend", index: index });
+    if (word === "it's") context.subjects.push({ name: "thing", index: index });
+    if (word === "i") context.subjects.push({ name: "user's", index: index });
     if (word.split("'")[1] === "s" && word !== "it's")
       context.subjects.push({ name: word, index: index });
   });
@@ -62,6 +66,7 @@ const DetectName = (input) => {
     //  If there are two uppercase words in a sentence, then the name can't have an index of 0
     //  If there is only one uppercase word in the sentence, then that has to be the
     //  Check if the word is uppercase and if it is then return the word and its index
+    if (word.length < 2) return false;
     return word.split("")[0].match(/[A-Z]/);
   });
 
@@ -78,9 +83,6 @@ const DetectName = (input) => {
   if (context.names) return context;
   else return false;
 };
-
-let context = DetectName(exampleSentence);
-console.log(context ? context : "No name provided");
 
 //  Get user input
 const readline = require("readline");
